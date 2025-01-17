@@ -10,21 +10,24 @@ def parse_input_file():
     # Преобразование JSON строки в XML
     def json_to_xml(json_obj, root_tag, indent=0):
         """Конвертирует JSON в строку XML с отступами."""
-        xml_str = "  " * indent + f"<{root_tag}>\n"  # Начало тега корня
+        indentation = "  " * indent
+        xml_str = f"{indentation}<{root_tag}>"
 
         if isinstance(json_obj, dict):
+            xml_str += "\n"
             for key, value in json_obj.items():
                 # Рекурсивно обрабатываем вложенные структуры
                 xml_str += json_to_xml(value, key, indent + 1)
+            xml_str += f"{indentation}</{root_tag}>\n"
         elif isinstance(json_obj, list):
+            xml_str += "\n"
             for item in json_obj:
                 xml_str += json_to_xml(item, root_tag, indent + 1)
+            xml_str += f"{indentation}</{root_tag}>\n"
         else:
             # Если это простое значение (не словарь или список)
-            xml_str += "  " * (indent + 1) + f"{json_obj}\n"
+            xml_str += f"{json_obj}</{root_tag}>\n"
 
-        # Закрытие тега
-        xml_str += "  " * indent + f"</{root_tag}>\n"
         return xml_str
 
     # Преобразуем строку JSON в объект (словарь)

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schedule>
+	<first_day>
+		<date>Thursday, 5 Dec 2024</date>
+		<lessons>
+			<first_lesson>
+				<subject>Программирование</subject>
+				<lecturer>Наумова Надежда Александровна</lecturer>
+				<room>Ауд. 1338</room>
+				<place>Кронверкский пр., д.49, лит.А</place>
+				<time>8:20-9:50</time>
+			</first_lesson>
+			<second_lesson>
+				<subject>Программирование</subject>
+				<lecturer>Наумова Надежда Александровна</lecturer>
+				<room>Ауд. 1338</room>
+				<place>Кронверкский пр., д.49, лит.А</place>
+				<time>10:00-11:30</time>
+			</second_lesson>
+			<third_lesson>
+				<subject>Основы профессиональной деятельности</subject>
+				<lecturer>Иманзаде Фахри Рашид Оглы</lecturer>
+				<room>Ауд. 2117</room>
+				<place>Кронверкский пр., д.49, лит.А</place>
+				<time>11:40-13:10</time>
+			</third_lesson>
+			<fourth_lesson>
+				<subject>Основы профессиональной деятельности</subject>
+				<lecturer>Иманзаде Фахри Рашид Оглы</lecturer>
+				<room>Ауд. 2117</room>
+				<place>Кронверкский пр., д.49, лит.А</place>
+				<time>13:30-15:00</time>
+			</fourth_lesson>
+		</lessons>
+	</first_day>
+	<second_day>
+		<date>Friday, 6 Dec 2024</date>
+		<lessons>
+			<first_lesson>
+				<subject>Английский язык B1.1</subject>
+				<lecturer>Грачева Виктория Витальевна</lecturer>
+				<room>Ауд. 3213</room>
+				<place>ул. Ломоносова, д.9, лит.Е</place>
+				<time>8:20-9:50</time>
+			</first_lesson>
+			<second_lesson>
+				<subject>Английский язык B1.1</subject>
+				<lecturer>Грачева Виктория Витальевна</lecturer>
+				<room>Ауд. 3213</room>
+				<place>ул. Ломоносова, д.9, лит.Е</place>
+				<time>10:00-11:30</time>
+			</second_lesson>
+			<third_lesson>
+				<subject>Математический анализ</subject>
+				<lecturer>Попов Игорь Юрьевич</lecturer>
+				<room>Ауд. 1124</room>
+				<place>ул. Ломоносова, д.9, лит.Е</place>
+				<time>11:40-13:10</time>
+			</third_lesson>
+			<fourth_lesson>
+				<subject>Математический анализ</subject>
+				<lecturer>Попов Игорь Юрьевич</lecturer>
+				<room>Ауд. 4306</room>
+				<place>ул. Ломоносова, д.9, лит.Е</place>
+				<time>13:30-15:00</time>
+			</fourth_lesson>
+		</lessons>
+	</second_day>
+</schedule>
