@@ -13,7 +13,6 @@ def parse_input_file():
         if isinstance(json_obj, dict):
             xml_str += "\n"
             for key, value in json_obj.items():
-                # Рекурсивно обрабатываем вложенные структуры
                 xml_str += json_to_xml(value, key, indent + 1)
             xml_str += f"{indentation}</{root_tag}>\n"
         elif isinstance(json_obj, list):
@@ -27,10 +26,8 @@ def parse_input_file():
 
         return xml_str
 
-    # Преобразуем строку JSON в объект (словарь)
     json_data = eval(json_string)
 
-    # Берем первый ключ JSON для корня XML
     root_key = next(iter(json_data))  # Получаем первый ключ из JSON, чтобы использовать его как корень
 
     xml_content = json_to_xml(json_data[root_key], root_key)

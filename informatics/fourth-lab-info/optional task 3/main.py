@@ -2,7 +2,7 @@ import re
 
 def parse_json(input_json):
     """
-    Преобразует строку JSON в объект Python, используя  правила грамматики.
+    Преобразует строку JSON в объект Python, используя минимальные правила грамматики.
     """
     def parse_value(value):
         value = value.strip()
