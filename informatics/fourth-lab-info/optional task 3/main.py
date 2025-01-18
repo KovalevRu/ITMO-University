@@ -2,7 +2,7 @@ import re
 
 def parse_json(input_json):
     """
-    Преобразует строку JSON в объект Python, используя минимальные правила грамматики.
+    Преобразует строку JSON в объект Python, используя  правила грамматики.
     """
     def parse_value(value):
         value = value.strip()
@@ -90,10 +90,8 @@ def main():
     with open('input.json', 'r', encoding='utf-8') as file:
         input_json = file.read()
 
-    # Преобразуем JSON строку в Python объект
     json_data = parse_json(input_json)
 
-    # Конвертируем Python объект в XML
     xml_output = json_to_xml(json_data)
 
     # Записываем результат в output.xml

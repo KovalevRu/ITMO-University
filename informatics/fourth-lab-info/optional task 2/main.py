@@ -1,9 +1,7 @@
 import re
-# OLD VERSION , ПОДГРУЗИТЬ С ЛИНУКСА НОВУЮ
 def parse_input_file():
-    # Путь к входному и выходному файлу
-    input_path = "input.json"  # Укажите путь к вашему файлу JSON
-    output_path = "output.xml"  # Укажите путь для выходного XML-файла
+    input_path = "input.json"
+    output_path = "output.xml"
 
     # Чтение JSON строки из файла
     with open(input_path, "r", encoding="utf-8") as file:
@@ -11,7 +9,6 @@ def parse_input_file():
 
     # Используем регулярное выражение для извлечения ключей и значений
     def parse_json(json_string):
-        # Регулярное выражение для поиска ключей и значений
         pattern = r'"(.*?)"\s*:\s*("(.*?)"|\d+|true|false|null|\{.*?\}|\[.*?\])'
         matches = re.findall(pattern, json_string)
 
@@ -26,11 +23,11 @@ def parse_input_file():
             elif value.isdigit():
                 obj[key] = int(value)  # Число
             elif value.lower() == "true":
-                obj[key] = True  # Булево значение True
+                obj[key] = True
             elif value.lower() == "false":
-                obj[key] = False  # Булево значение False
+                obj[key] = False
             elif value.lower() == "null":
-                obj[key] = None  # Null
+                obj[key] = None
             elif value.startswith("{") and value.endswith("}"):
                 obj[key] = parse_json(value)  # Рекурсивно обрабатываем вложенные объекты
             elif value.startswith("[") and value.endswith("]"):
@@ -43,7 +40,6 @@ def parse_input_file():
     # Преобразование JSON строки в объект
     json_data = parse_json(json_string)
 
-    # Преобразование JSON объекта в XML
     def json_to_xml(json_obj, root_tag, indent=0):
         """Конвертирует JSON в строку XML с отступами."""
         indentation = "  " * indent
@@ -64,13 +60,10 @@ def parse_input_file():
 
         return xml_str
 
-    # Берем первый ключ JSON для корня XML
     root_key = next(iter(json_data))  # Получаем первый ключ из JSON, чтобы использовать его как корень
 
-    # Генерация XML контента
     xml_content = json_to_xml(json_data[root_key], root_key)
 
-    # Запись результата в файл
     with open(output_path, "w", encoding="utf-8") as output_file:
         output_file.write(xml_content)
 
