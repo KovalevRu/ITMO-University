@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="second-lab-opd">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/opd/second-lab-opd/bcomp-ng.jar!/" />
+      <root url="jar://$PROJECT_DIR$/opd/second-lab-opd/bcomp-ng-ex-Custom.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
