@@ -50,7 +50,7 @@ public class Hotel {
         }
     }
 
-    @Override
+    @Override // Ненавижу этот синтаксис.
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Hotel hotel)) return false;

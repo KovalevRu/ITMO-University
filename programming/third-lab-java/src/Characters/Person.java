@@ -21,14 +21,10 @@ public abstract class Person implements Payable {
         return money;
     }
 
-    /**
-     * Абстрактный метод, описывающий действие персонажа.
-     */
+     //Абстрактный метод, описывающий действие персонажа.
     public abstract void act();
 
-    /**
-     * Метод оплаты. Если денег недостаточно, выбрасывается проверяемое исключение.
-     */
+     //Метод оплаты. Если денег недостаточно, выбрасывается проверяемое исключение.
     @Override
     public void pay(int amount) throws NotEnoughMoneyException {
         if (money < amount) {
@@ -37,16 +33,6 @@ public abstract class Person implements Payable {
         }
         money -= amount;
         System.out.println(name + " оплатил " + amount + " сантиков. Остаток: " + money);
-    }
-
-    /**
-     * Метод для вычитания указанной суммы из денег без проверки.
-     */
-    public void deduct(int amount) {
-        if (amount < 0) {
-            throw new IllegalArgumentException("Сумма для вычитания не может быть отрицательной");
-        }
-        money -= amount;
     }
 
     @Override

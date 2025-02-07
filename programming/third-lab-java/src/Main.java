@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-
-
+import Event.*;
 import Characters.*;
 import Exceiptions.*;
 import Environment.*;
@@ -16,9 +14,8 @@ public class Main {
         Hotel hotel = new Hotel("Экономическая", 50);
 
         // Создаем персонажей с начальными деньгами: Незнайка - 30, Козлик - 20.
-        // Можно менять эти значения для получения вариативного сценария.
         List<Person> guests = new ArrayList<>();
-        guests.add(new Neznaika("Незнайка", 30));
+        guests.add(new Neznaika("Незнайка", 50));
         guests.add(new Kozlik("Козлик", 20));
         System.out.println("Гости, пришедшие в гостиницу: " + guests);
 
@@ -49,44 +46,11 @@ public class Main {
 
         // Демонстрация обработки неожиданного события: сигнализация или взрыв комнаты.
         try {
-            simulateUnexpectedEvent();
+            EventSimulator.simulateUnexpectedEvent();
         } catch (RuntimeException e) {
             System.out.println("Поймано неожиданное исключение: " + e.getMessage());
         }
 
         System.out.println("Сценарий завершен.");
     }
-
-    /**
-     * Метод для демонстрации случайного события в номере.
-     * Возможные события:
-     * 1. Срабатывание сигнализации: либо корректное, либо с выбросом unchecked исключения.
-     * 2. «Взрыв» комнаты – имитируется выбросом unchecked исключения.
-     * 3. Никакого события.
-     */
-    private static void simulateUnexpectedEvent() {
-        Random random = new Random();
-        int eventChance = random.nextInt(100);
-
-        if (eventChance < 30) { // 30% шанс на взрыв комнаты
-            System.out.println("Неожиданно в номере раздался грохот!");
-            throw new IllegalStateException("Комната взорвалась от неведомой причины!");
-        } else if (eventChance < 60) { // следующие 30% шанс – событие сигнализации
-            Runnable alarmEvent = new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("В номере начал мигать красный глазок. Запускается сигнализация...");
-                    if (random.nextBoolean()) {
-                        throw new IllegalStateException("Сбой в системе сигнализации!");
-                    } else {
-                        System.out.println("Сигнализация сработала корректно.");
-                    }
-                }
-            };
-            alarmEvent.run();
-        } else { // 40% шанс – событий не происходит
-            System.out.println("Ночь проходит спокойно. Дополнительных событий не обнаружено.");
-        }
-    }
 }
-
