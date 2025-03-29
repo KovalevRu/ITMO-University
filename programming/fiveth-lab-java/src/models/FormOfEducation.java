@@ -1,4 +1,4 @@
-package Model;
+package models;
 
 public enum FormOfEducation {
     DISTANCE_EDUCATION,

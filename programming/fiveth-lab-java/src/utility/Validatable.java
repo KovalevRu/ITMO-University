@@ -1,5 +1,5 @@
 package utility;
 
-public class Validatable {
-
+public interface Validatable {
+    boolean isValid();
 }
