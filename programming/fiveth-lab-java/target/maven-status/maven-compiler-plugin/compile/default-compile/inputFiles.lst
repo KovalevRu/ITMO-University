@@ -1,0 +1,11 @@
+/Users/ruslan/StudyGroupManager/src/main/java/org/example/Main.java
+/Users/ruslan/StudyGroupManager/src/main/java/org/example/command/Command.java
+/Users/ruslan/StudyGroupManager/src/main/java/org/example/command/CommandManager.java
+/Users/ruslan/StudyGroupManager/src/main/java/org/example/model/Color.java
+/Users/ruslan/StudyGroupManager/src/main/java/org/example/model/Coordinates.java
+/Users/ruslan/StudyGroupManager/src/main/java/org/example/model/FormOfEducation.java
+/Users/ruslan/StudyGroupManager/src/main/java/org/example/model/Person.java
+/Users/ruslan/StudyGroupManager/src/main/java/org/example/model/StudyGroup.java
+/Users/ruslan/StudyGroupManager/src/main/java/org/example/util/ConsoleManager.java
+/Users/ruslan/StudyGroupManager/src/main/java/org/example/util/FileManager.java
+/Users/ruslan/StudyGroupManager/src/main/java/org/example/util/LocalDateTimeAdapter.java
