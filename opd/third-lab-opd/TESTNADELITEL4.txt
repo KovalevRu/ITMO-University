@@ -1,32 +1,6 @@
-570a
-005C
-0057
-FFFA
-FFF8
-57Fa
-0570
-A000
-E000
-E000
-AF80
-0740
-0680
-EEFB
-AF04
-EEF8
-AEF5
-EEF5
-AAF4
-0480
-F407
-0480
-F405
-0400
-0400
-7EEF
-F901
-EEED
-8581
-CEF4
-0100
-
+1.neutral (both) 
+2. negative
+3.neutral (both) 
+4.Positive
+5.more positive ( both ) 
+6.positive 

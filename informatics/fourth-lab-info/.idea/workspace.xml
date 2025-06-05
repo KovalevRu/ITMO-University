@@ -5,37 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c0a59ab-e430-4f33-a6ae-39d8676300b6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../first-lab-info/firstlabinfo.pages" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../first-lab-info/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/fourth-lab-info.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main task/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main task/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main task/.idea/main task.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main task/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main task/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main task/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main task/input.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main task/output.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/optional task 1/input.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/optional task 1/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/optional task 1/output_xmltodict.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/optional task 2/input.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/optional task 2/output.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/optional task 3/input.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/optional task 3/output.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../second-lab-info/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../second-lab-info/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../second-lab-info/secondlabainfo.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../third-lab-info/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../third-lab-info/lab3_task1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../third-lab-info/lab3_task2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../third-lab-info/lab3_task3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../database/first-lab-db/report.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../database/first-lab-db/report.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../opd/third-lab-opd/TESTNADELITEL4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../opd/third-lab-opd/TESTNADELITEL4.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

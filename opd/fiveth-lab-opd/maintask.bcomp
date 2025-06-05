@@ -1,0 +1,56 @@
+org  0x0C1      ; Начало программы (0C1 в 16 сс)
+START:          CLA
+                ST   IS_EVEN
+                LD   STR_BEGIN      ; Инициализация указателя строки
+                ST   STR_PTR
+
+READ_LOOP:      NOP
+DEV_WAIT:       IN   0x5            ; Проверка готовности ВУ-2
+                AND  #0x40          ; Бит 6 - флаг готовности (маска для 6 бита типо)
+                BEQ  DEV_WAIT
+
+                IN   0x4            ; Чтение символа из ВУ-2
+                ST   C              ; Сохранение символа
+
+                ; Определение типа итерации (четная/нечетная)
+                LD   IS_EVEN
+                AND  #1
+                BEQ  PREPARE_ODD_VALUE
+                JUMP PREPARE_EVEN_VALUE
+
+PREPARE_ODD_VALUE:
+                LD   C              ; Нечетная итерация: символ в младший байт
+                JUMP WRITE_VALUE
+
+PREPARE_EVEN_VALUE:
+                LD   C
+                SWAB                ; Четная итерация: символ в старший байт
+
+WRITE_VALUE:    OR   (STR_PTR)      ; Объединение с предыдущим значением
+                ST   (STR_PTR)      ; Сохранение слова
+
+                ; Обновление указателя строки
+                LD   STR_PTR
+                ADD  IS_EVEN        ; +1 только на четных итерациях
+                ST   STR_PTR
+
+                ; Инверсия флага четности
+                LD   #1
+                SUB  IS_EVEN
+                ST   IS_EVEN
+
+                ; Проверка на стоп-символ CR (0x0D)
+                LD   C
+                CMP  #0x0D
+                BNE  READ_LOOP
+                HLT
+
+; Переменные программы
+C:              WORD ?              ; Текущий символ
+IS_EVEN:        WORD 0              ; Флаг четности итерации (0-нечет, 1-чет)
+STR_BEGIN:      WORD 0x611          ; Начало строки (611 в hex)
+STR_PTR:        WORD ?              ; Текущий указатель строки
+
+; Область для строки
+org  0x611      ; Адрес строки (611 в hex)
+STR:            WORD ?              ; Динамически формируемая строка
