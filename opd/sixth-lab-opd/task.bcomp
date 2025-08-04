@@ -1,0 +1,87 @@
+org 0x0
+; векторы прерываний
+v0: word $default, 0x180
+v1: word $default, 0x180
+v2: word $int2,    0x180
+v3: word $int3,    0x180
+v4: word $default, 0x180
+v5: word $default, 0x180
+v6: word $default, 0x180
+v7: word $default, 0x180
+
+default: iret
+; TODO ПРОВЕРИТЬ ГРАНИЦЫ ОДЗ // upd. ВСЁ ОКЕЙ.
+org 0x100
+; основная программа
+start:
+	di
+	out 0x1
+	out 0x5
+	out 0xb
+	out 0xe
+	out 0x12
+	out 0x16
+	out 0x1a
+	out 0x1e
+	ld #0xa
+	out 0x5
+	ld #0xb
+	out 0x7
+	ld x
+	call check_x
+	st x
+	ei
+
+prog:
+	ld x
+	sub #3
+	call check_x
+	st x
+	nop
+	jump prog
+
+; обработчик прерывания ву-2
+int2:
+	di
+	nop
+	push
+	in 0x4
+	and x
+	and #0x1f
+	call check_x
+	st x
+	pop
+	nop
+	ei
+	iret
+
+; обработчик прерывания ву-3
+int3:
+	di
+	nop
+	push
+	ld x
+	asl
+	add x
+	sub #6
+	out 0x6
+	pop
+	nop
+	ei
+	iret
+
+; проверка x на выход за одз
+check_x:
+	cmp min_x
+	bmi ld_max_x
+	cmp max_x
+	bpl ld_max_x
+	ret
+ld_max_x:
+	ld max_x
+	ret
+
+; переменные
+x:      word 30
+max_x:  word 44
+min_x:  word -40

@@ -1,56 +1,59 @@
-org  0x0C1      ; Начало программы (0C1 в 16 сс)
-START:          CLA
-                ST   IS_EVEN
-                LD   STR_BEGIN      ; Инициализация указателя строки
-                ST   STR_PTR
+org 0x0c1
+; Переменные
+c:              word ?      ; текущий символ
+is_even:        word 0      ; флаг чености итерации (0-нечет, 1-чет)
+str_begin:      word 0x611  ; начало строки
+str_ptr:        word ?      ; текущий указатель строки
 
-READ_LOOP:      NOP
-DEV_WAIT:       IN   0x5            ; Проверка готовности ВУ-2
-                AND  #0x40          ; Бит 6 - флаг готовности (маска для 6 бита типо)
-                BEQ  DEV_WAIT
+; Основная программа
+start:
+	cla
+	st is_even
+	ld str_begin
+	st str_ptr
 
-                IN   0x4            ; Чтение символа из ВУ-2
-                ST   C              ; Сохранение символа
+read_loop:
+	nop
 
-                ; Определение типа итерации (четная/нечетная)
-                LD   IS_EVEN
-                AND  #1
-                BEQ  PREPARE_ODD_VALUE
-                JUMP PREPARE_EVEN_VALUE
+dev_wait:
+	in 0x5
+	and #0x40
+	beq dev_wait
 
-PREPARE_ODD_VALUE:
-                LD   C              ; Нечетная итерация: символ в младший байт
-                JUMP WRITE_VALUE
+	in 0x4
+	st c
 
-PREPARE_EVEN_VALUE:
-                LD   C
-                SWAB                ; Четная итерация: символ в старший байт
+	ld is_even
+	and #1
+	beq prepare_odd_value
+	jump prepare_even_value
 
-WRITE_VALUE:    OR   (STR_PTR)      ; Объединение с предыдущим значением
-                ST   (STR_PTR)      ; Сохранение слова
+prepare_odd_value:
+	ld c
+	jump write_value
 
-                ; Обновление указателя строки
-                LD   STR_PTR
-                ADD  IS_EVEN        ; +1 только на четных итерациях
-                ST   STR_PTR
+prepare_even_value:
+	ld c
+	swab
 
-                ; Инверсия флага четности
-                LD   #1
-                SUB  IS_EVEN
-                ST   IS_EVEN
+write_value:
+	or (str_ptr)
+	st (str_ptr)
 
-                ; Проверка на стоп-символ CR (0x0D)
-                LD   C
-                CMP  #0x0D
-                BNE  READ_LOOP
-                HLT
+	ld str_ptr
+	add is_even
+	st str_ptr
 
-; Переменные программы
-C:              WORD ?              ; Текущий символ
-IS_EVEN:        WORD 0              ; Флаг четности итерации (0-нечет, 1-чет)
-STR_BEGIN:      WORD 0x611          ; Начало строки (611 в hex)
-STR_PTR:        WORD ?              ; Текущий указатель строки
+	ld #1
+	sub is_even
+	st is_even
 
-; Область для строки
-org  0x611      ; Адрес строки (611 в hex)
-STR:            WORD ?              ; Динамически формируемая строка
+	; Проверка на стоп CR(0x0D)
+	ld c
+	cmp #0x0D
+	bne read_loop
+	hlt
+
+; Где строка будет
+org 0x611
+str: word ? 

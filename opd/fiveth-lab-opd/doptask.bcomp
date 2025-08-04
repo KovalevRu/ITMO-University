@@ -1,0 +1,165 @@
+org 0x60
+; --- Переменные ---
+num1: word 0x0 ; первая цифра
+num2: word 0x0 ; вторая цифра
+value: word 0x0 ; итоговое число (0-99)
+octal_hundreds: word 0x0 ; сотни в 8-ричной
+octal_tens: word 0x0 ; десятки в 8-ричной
+octal_ones: word 0x0 ; единицы в 8-ричной
+
+; --- Очистка индикатора ---
+start:
+	cla
+	ld #0x4b
+	out 0x14
+	ld #0x3b
+	out 0x14
+	ld #0x2b
+	out 0x14
+	ld #0x1b
+	out 0x14
+	ld #0x0b
+	out 0x14
+	jump read_first_digit
+
+; --- Ввод первой цифры ---
+read_first_digit:
+	in 0x1d
+	and #0x40
+	beq read_first_digit
+	in 0x1c
+	st $tmp         ; Сохраняем считанное значение
+	cmp #0x0a
+	blt store_first_digit
+	cmp #0x0f ; "="
+	beq finish_input_first
+	jump read_first_digit
+
+store_first_digit:
+	ld $tmp
+	out 0x14 ; показать считанное значение с клавиатуры
+	st $num1
+	jump read_second_digit
+
+; --- Ввод второй цифры ---
+read_second_digit:
+	in 0x1d
+	and #0x40
+	beq read_second_digit
+	in 0x1c
+	st $tmp
+	ld $tmp
+	out 0x14 ; показать считанное значение с клавиатуры
+	cmp #0x0a
+	blt store_second_digit
+	cmp #0x0f ; "="
+	beq finish_input_second
+	jump read_second_digit
+
+store_second_digit:
+    ld $tmp
+    st $num2
+    ld $num1
+    add $num1   ; x2
+    add $num1   ; x3
+    add $num1   ; x4
+    add $num1   ; x5
+    add $num1   ; x6
+    add $num1   ; x7
+    add $num1   ; x8
+    add $num1   ; x9
+    add $num1   ; x10
+    add $num2
+    st $value
+    jump wait_equal
+
+wait_equal:
+	in 0x1d
+	and #0x40
+	beq wait_equal
+	in 0x1c
+	cmp #0x0f
+	beq to_octal
+	jump wait_equal
+
+finish_input_first:
+	ld $num1
+	st $value
+	jump to_octal
+
+finish_input_second:
+	; value уже посчитан
+	jump to_octal
+
+; --- Перевод в восьмеричную ---
+to_octal:
+	ld $value
+	st $tmp
+	ld #0x0
+	st $octal_hundreds
+	st $octal_tens
+	st $octal_ones
+	ld $value
+	cmp #0x40 ; 64 (8*8) — если меньше, то максимум 2 разряда
+	blt convert_tens
+	; цикл деления на 64 (8*8)
+convert_hundreds:
+	ld $value
+	cmp #0x40
+	blt convert_tens
+	add $minus64
+	st $value
+	ld $octal_hundreds
+	add #1
+	st $octal_hundreds
+	jump convert_hundreds
+convert_tens:
+	ld $value
+	cmp #0x8
+	blt end_convert
+convert_tens_loop:
+	ld $value
+	cmp #0x8
+	blt end_convert
+	add $minus8
+	st $value
+	ld $octal_tens
+	add #1
+	st $octal_tens
+	jump convert_tens_loop
+end_convert:
+	ld $value
+	st $octal_ones
+	jump show_octal
+less_than_8:
+	ld #0x0
+	st $octal_tens
+	ld $value
+	st $octal_ones
+	jump show_octal
+
+; --- Вывод на ВУ-7 ---
+show_octal:
+	ld #0x4b
+	out 0x14
+	ld #0x3b
+	out 0x14
+	ld #0x2b
+	out 0x14
+	ld #0x1b
+	out 0x14
+	ld #0x0b
+	out 0x14
+	ld $octal_hundreds
+	add #0x20 ; сотни на третий разряд
+	out 0x14
+	ld $octal_tens
+	add #0x10 ; десятки на второй разряд
+	out 0x14
+	ld $octal_ones
+	out 0x14
+	hlt
+
+tmp: word 0x0
+minus8: word 0xFFF8
+minus64: word 0xFFC0 
